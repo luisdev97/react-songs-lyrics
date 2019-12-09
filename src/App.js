@@ -1,12 +1,20 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
 
 const App = () => {
+
+  const [ state, setState ] = useState({});
+
+  const getLyric = dataSearch => {
+    console.log(dataSearch);
+  }
+
   return (
     <>
-      <Form/>
+      <Form getLyric={ getLyric }/>
     </>
   );
+
 };
 
 export default App;

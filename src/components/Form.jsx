@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const Form = ({ getLyric }) => {
 
 
     const [ dataSearch, setDataSearch ] = useState({
@@ -15,11 +15,16 @@ const Form = () => {
         });
     }
 
+    const handleSubmit = e =>{
+        e.preventDefault();
+        getLyric(dataSearch);
+    }
+
     return (
         <div className="bg-info">
           <div className="container">
               <div className="row">
-                  <form 
+                  <form onSubmit={ handleSubmit }
                     className="col card text-white bg-transparent  mb-5 pt-5 pb-2">
                       <fieldset>
                           <legend className="text-center">Buscador Letras Canciones</legend>
