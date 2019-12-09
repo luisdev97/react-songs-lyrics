@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Form from './components/Form';
 import Song from './components/Song';
+import ArtistInfo from './components/ArtistInfo';
 
 const App = () => {
 
@@ -20,10 +21,11 @@ const App = () => {
   }
 
   const getArtistsInfo = async(artist) => {
-    const url = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
-    const res = await axios.get(url);
-    const artistInfo = res.data.artists[0];
-    setArtistInfo(artistInfo);
+    if(artist){
+      const url = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
+      const res = await axios.get(url);
+      setArtistInfo(res.data.artists[0]);
+    }
   }
 
   useEffect( () => {
@@ -34,15 +36,14 @@ const App = () => {
   return (
     <>
       <Form getLyric={ getLyric }/>
+
       <div className="container mt-5">
 
         <div className="row">
 
-          <div className="col-md-6">
+              <ArtistInfo info={ artistInfo }/>
 
-          </div>
-
-            <Song lyrics={ lyrics }/>
+              <Song lyrics={ lyrics }/>
 
         </div>
       </div>
